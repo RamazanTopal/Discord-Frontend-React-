@@ -38,3 +38,17 @@ export const validateRegister = ({
 
   return false;
 };
+
+export const validateMail = ({
+  email,
+}) => {
+  const errorControl = schema.validate({
+    email,
+  });
+
+  if (!errorControl.error) {
+    return true;
+  }
+
+  return false;
+};
