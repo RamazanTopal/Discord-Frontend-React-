@@ -1,9 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import { Button } from '@mui/material';
 import GroupsIcon from '@mui/icons-material/Groups';
 
-function MainPageButton(props) {
+function MainPageButton() {
   return (
     <Button
       style={{
@@ -22,9 +22,5 @@ function MainPageButton(props) {
     </Button>
   );
 }
-
-MainPageButton.propTypes = {
-
-};
 
 export default MainPageButton;

@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { styled } from '@mui/system/styled';
+
+import { styled } from '@mui/system';
 
 const MainContainer = styled('div')({
   flexGrow: 1,
@@ -8,14 +8,10 @@ const MainContainer = styled('div')({
   marginTop: '48px',
   display: 'flex',
 });
-function Messenger(props) {
+function Messenger() {
   return (
-    <div />
+    <MainContainer />
   );
 }
-
-Messenger.propTypes = {
-
-};
 
 export default Messenger;

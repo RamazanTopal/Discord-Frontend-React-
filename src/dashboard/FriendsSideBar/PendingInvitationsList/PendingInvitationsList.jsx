@@ -1,7 +1,32 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { styled } from '@mui/system/styled';
 
+import { styled } from '@mui/system';
+import PendingInvitationsListItem from './PendingInvitationsListItem';
+
+const DUMMY_INVITATIONS = [
+  {
+    _id: '1',
+    senderId: {
+      username: 'Omer',
+      email: 'dummy@gmail.com',
+    },
+  },
+  {
+    _id: '2',
+    senderId: {
+      username: 'ramazan',
+      email: 'faruk@gmail.com',
+    },
+  },
+  {
+    _id: '3',
+    senderId: {
+      username: 'Faruh',
+      email: 'omer@gmail.com',
+    },
+  },
+
+];
 const MainContainer = styled('div')({
   width: '100%',
   height: '22%',
@@ -10,14 +35,22 @@ const MainContainer = styled('div')({
   alignItems: 'center',
   overflow: 'auto',
 });
-function PendingInvitationsList(props) {
+function PendingInvitationsList() {
   return (
-    <MainContainer />
+    <MainContainer>
+      {DUMMY_INVITATIONS.map((invitation) => (
+        <PendingInvitationsListItem
+          // eslint-disable-next-line no-underscore-dangle
+          key={invitation._id}
+          // eslint-disable-next-line no-underscore-dangle
+          id={invitation._id}
+          username={invitation.senderId.username}
+          email={invitation.senderId.email}
+        />
+      ))}
+
+    </MainContainer>
   );
 }
-
-PendingInvitationsList.propTypes = {
-
-};
 
 export default PendingInvitationsList;

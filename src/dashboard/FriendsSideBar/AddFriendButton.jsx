@@ -1,6 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+
 import CustomPrimaryButton from '../../components/CustomPrimaryButton';
+import AddFriendDialog from './AddFriendDialog';
 
 const additionalStyles = {
   marginTop: '10px',
@@ -10,21 +11,28 @@ const additionalStyles = {
   background: '#3ba55d',
 };
 
-function AddFriendButton(props) {
+function AddFriendButton() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const handleOpenAddFriendDialog = () => {
-
+    setIsDialogOpen(true);
+  };
+  const handleCloseAddFriendDialog = () => {
+    setIsDialogOpen(false);
   };
   return (
-    <CustomPrimaryButton
-      additionalStyles={additionalStyles}
-      label="Add Friend"
-      onClick={handleOpenAddFriendDialog}
-    />
+    <>
+      <CustomPrimaryButton
+        additionalStyles={additionalStyles}
+        label="Add Friend"
+        onClick={handleOpenAddFriendDialog}
+      />
+      <AddFriendDialog
+        isDialogOpen={isDialogOpen}
+        closeDialogHandler={handleCloseAddFriendDialog}
+      />
+    </>
+
   );
 }
-
-AddFriendButton.propTypes = {
-
-};
 
 export default AddFriendButton;

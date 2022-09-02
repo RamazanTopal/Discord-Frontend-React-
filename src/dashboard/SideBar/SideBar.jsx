@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { styled } from '@mui/system/styled';
+import { styled } from '@mui/system';
 import MainPageButton from './MainPageButton';
 
 const MainContainer = styled('div')({
@@ -11,7 +10,7 @@ const MainContainer = styled('div')({
   alignItems: 'center',
   backgroundColor: '#202225',
 });
-function SiderBar(props) {
+function SiderBar() {
   return (
     <MainContainer>
       <MainPageButton />
@@ -19,9 +18,5 @@ function SiderBar(props) {
 
   );
 }
-
-SiderBar.propTypes = {
-
-};
 
 export default SiderBar;

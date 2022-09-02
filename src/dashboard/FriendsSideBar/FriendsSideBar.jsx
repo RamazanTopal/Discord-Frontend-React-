@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import { styled } from '@mui/system';
 import AddFriendButton from './AddFriendButton';
 import FriendsTitle from './FriendsTitle';
@@ -15,7 +15,7 @@ const MainContainer = styled('div')({
   backgroundColor: '#2F3136',
 });
 
-function FriendsSideBar(props) {
+function FriendsSideBar() {
   return (
     <MainContainer>
       <AddFriendButton />
@@ -26,9 +26,5 @@ function FriendsSideBar(props) {
     </MainContainer>
   );
 }
-
-FriendsSideBar.propTypes = {
-
-};
 
 export default FriendsSideBar;

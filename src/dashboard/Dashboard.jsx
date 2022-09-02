@@ -1,20 +1,31 @@
-import React from 'react';
-import { styled } from '@mui/system/styled';
-import SiderBar from './SiderBar/SiderBar';
-import AppBar from './AppBar';
+import React, { useEffect } from 'react';
+import { styled } from '@mui/system';
+import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
 import Messenger from './Messenger';
 import FriendsSideBar from './FriendsSideBar/FriendsSideBar';
-import SiderBar from './SideBar/SiderBar';
+import SideBar from './SideBar/SideBar';
+import logout from '../utils/auth';
+import { getActions } from '../store/actions/authActions';
+import AppBar from './AppBar/AppBar';
 
 const Wrapper = styled('div')({
   width: '100%',
   height: '100vh',
   display: 'flex',
 });
-function Dashboard() {
+function Dashboard({ setUserDetails }) {
+  useEffect(() => {
+    const userDetails = localStorage.getItem('user');
+    if (!userDetails) {
+      logout();
+    } else {
+      setUserDetails(JSON.parse(userDetails));
+    }
+  }, []);
   return (
     <Wrapper>
-      <SiderBar />
+      <SideBar />
       <Messenger />
       <FriendsSideBar />
       <AppBar />
@@ -22,4 +33,11 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+const mapActionsToProps = (dispatch) => ({
+  ...getActions(dispatch),
+});
+Dashboard.propTypes = {
+  setUserDetails: PropTypes.func.isRequired,
+};
+
+export default connect(null, mapActionsToProps)(Dashboard);

@@ -1,6 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { styled } from '@mui/system/styled';
+
+import { styled } from '@mui/system';
+import DropdownMenu from './DropdownMenu';
 
 const MainContainer = styled('div')({
   position: 'absolote',
@@ -15,14 +16,12 @@ const MainContainer = styled('div')({
   justifyContent: 'space-between',
   padding: '0 15px',
 });
-function AppBar(props) {
+function AppBar() {
   return (
-    <MainContainer />
+    <MainContainer>
+      <DropdownMenu />
+    </MainContainer>
   );
 }
-
-AppBar.propTypes = {
-
-};
 
 export default AppBar;
