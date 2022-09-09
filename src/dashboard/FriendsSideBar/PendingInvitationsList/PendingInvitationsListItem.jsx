@@ -62,7 +62,7 @@ function PendingInvitationsListItem({
 }
 
 PendingInvitationsListItem.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   acceptFriendInvitation: PropTypes.func.isRequired,

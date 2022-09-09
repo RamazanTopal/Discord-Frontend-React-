@@ -25,6 +25,7 @@ function AddFriendButton() {
         additionalStyles={additionalStyles}
         label="Add Friend"
         onClick={handleOpenAddFriendDialog}
+        disabled={false}
       />
       <AddFriendDialog
         isDialogOpen={isDialogOpen}

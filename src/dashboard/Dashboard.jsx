@@ -8,6 +8,7 @@ import SideBar from './SideBar/SideBar';
 import logout from '../utils/auth';
 import { getActions } from '../store/actions/authActions';
 import AppBar from './AppBar/AppBar';
+import { connectWithSocketServer } from '../realtimeCommunication/socketConnection';
 
 const Wrapper = styled('div')({
   width: '100%',
@@ -21,6 +22,7 @@ function Dashboard({ setUserDetails }) {
       logout();
     } else {
       setUserDetails(JSON.parse(userDetails));
+      connectWithSocketServer(JSON.parse(userDetails));
     }
   }, []);
   return (

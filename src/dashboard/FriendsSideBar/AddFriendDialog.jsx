@@ -10,15 +10,13 @@ import CustomPrimaryButton from '../../components/CustomPrimaryButton';
 function AddFriendDialog({
   isDialogOpen,
   closeDialogHandler,
-  sendFriendInvitation = () => {
-
-  },
+  sendFriendInvitation = (deger) => deger,
 }) {
   const [email, setEmail] = useState('');
   const [isFormValid, setIsFormValid] = useState('');
 
   const handleSendInvitation = () => {
-    sendFriendInvitation('merhaba');
+    sendFriendInvitation('test invite');
   };
 
   const handleCloseDialog = () => {

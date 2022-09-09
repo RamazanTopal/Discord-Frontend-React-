@@ -22,7 +22,7 @@ function Avatar({ username, large }) {
 
 Avatar.propTypes = {
   username: PropTypes.string.isRequired,
-  large: PropTypes.string.isRequired,
+  large: PropTypes.bool.isRequired,
 };
 
 export default Avatar;
