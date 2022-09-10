@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import {
   Dialog, DialogActions, DialogContent, DialogContentText, Typography, DialogTitle,
 } from '@mui/material';
+import { connect } from 'react-redux';
 import { validateMail } from '../../utils/validator';
 import InputWithLabel from '../../components/inputWithLabel';
 import CustomPrimaryButton from '../../components/CustomPrimaryButton';
+import { getActions } from '../../store/actions/friendsAction';
 
 function AddFriendDialog({
   isDialogOpen,
@@ -15,13 +17,18 @@ function AddFriendDialog({
   const [email, setEmail] = useState('');
   const [isFormValid, setIsFormValid] = useState('');
 
-  const handleSendInvitation = () => {
-    sendFriendInvitation('test invite');
-  };
-
   const handleCloseDialog = () => {
     closeDialogHandler();
     setEmail('');
+  };
+
+  const handleSendInvitation = () => {
+    sendFriendInvitation(
+      {
+        email,
+      },
+      handleCloseDialog,
+    );
   };
 
   useEffect(() => {
@@ -65,4 +72,8 @@ AddFriendDialog.propTypes = {
 
 };
 
-export default AddFriendDialog;
+const mapActionsToProps = (dispatch) => ({
+  ...getActions(dispatch),
+});
+
+export default connect(null, mapActionsToProps)(AddFriendDialog);

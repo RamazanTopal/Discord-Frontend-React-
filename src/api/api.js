@@ -22,6 +22,9 @@ export const login = async (data) => await apiClient.post('/user/login', data);
 // eslint-disable-next-line no-return-await
 export const register = async (data) => await apiClient.post('/user/register', data);
 
+// eslint-disable-next-line no-return-await
+export const sendFriendInvitation = async (data) => await apiClient.post('/friend-invitation/invite', data);
+
 export const checkReponseCode = (error) => {
   const responseCode = error?.response?.status;
   if (responseCode) {
