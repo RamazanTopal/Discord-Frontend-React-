@@ -8,14 +8,20 @@ export const friendsActions = {
 };
 
 const sendFriendInvitation = (data, closeDialogHandler) => async (dispatch) => {
-  const response = await api.sendFriendInvitation(data);
-  if (response.error) {
-    dispatch(openAlertMessage(response.exception?.response?.data));
-  } else {
+  try {
+    await api.sendFriendInvitation(data);
     dispatch(openAlertMessage('Invitation has been sent!'));
     closeDialogHandler();
+  } catch (error) {
+    dispatch(openAlertMessage(error.message));
   }
 };
+
+export const setPendingFriendsInvitations = (pendingFriendsInvitations) => ({
+  type: friendsActions.SET_PENDING_FRIENDS_INVITATIONS,
+  pendingFriendsInvitations,
+
+});
 export const getActions = (dispatch) => ({
   // eslint-disable-next-line max-len
   sendFriendInvitation: (data, closeDialogHandler) => dispatch(sendFriendInvitation(data, closeDialogHandler)),

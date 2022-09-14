@@ -13,7 +13,6 @@ const setUserDetails = (userDetails) => ({
 const login = (userDetail, navigate) => async (dispatch) => {
   try {
     const response = await api.login(userDetail);
-
     // eslint-disable-next-line no-unsafe-optional-chaining
     const { userInformation } = response?.data;
 
@@ -21,19 +20,20 @@ const login = (userDetail, navigate) => async (dispatch) => {
     dispatch(setUserDetails(userInformation));
     navigate('/dashboard');
   } catch (error) {
-    dispatch(openAlertMessage(error.response.data.message));
+    dispatch(openAlertMessage(error.message));
   }
 };
 
 const register = (userDetail, navigate) => async (dispatch) => {
   try {
     const response = await api.register(userDetail);
+
     // eslint-disable-next-line no-unsafe-optional-chaining
     const { userInformation } = response?.data;
 
     localStorage.setItem('user', JSON.stringify(userInformation));
     dispatch(setUserDetails(userInformation));
-    navigate('/dashboard');
+    navigate('/login');
   } catch (error) {
     dispatch(openAlertMessage(error.response.data.message));
   }

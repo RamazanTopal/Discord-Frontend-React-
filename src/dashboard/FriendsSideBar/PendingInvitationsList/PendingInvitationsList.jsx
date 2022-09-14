@@ -1,32 +1,10 @@
 import React from 'react';
 
 import { styled } from '@mui/system';
+import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
 import PendingInvitationsListItem from './PendingInvitationsListItem';
 
-const DUMMY_INVITATIONS = [
-  {
-    _id: '1',
-    senderId: {
-      username: 'Omer',
-      email: 'dummy@gmail.com',
-    },
-  },
-  {
-    _id: '2',
-    senderId: {
-      username: 'ramazan',
-      email: 'faruk@gmail.com',
-    },
-  },
-  {
-    _id: '3',
-    senderId: {
-      username: 'Faruh',
-      email: 'omer@gmail.com',
-    },
-  },
-
-];
 const MainContainer = styled('div')({
   width: '100%',
   height: '22%',
@@ -35,10 +13,10 @@ const MainContainer = styled('div')({
   alignItems: 'center',
   overflow: 'auto',
 });
-function PendingInvitationsList() {
+function PendingInvitationsList({ pendingFriendsInvitations }) {
   return (
     <MainContainer>
-      {DUMMY_INVITATIONS.map((invitation) => (
+      {pendingFriendsInvitations.map((invitation) => (
         <PendingInvitationsListItem
           // eslint-disable-next-line no-underscore-dangle
           key={invitation._id}
@@ -53,4 +31,12 @@ function PendingInvitationsList() {
   );
 }
 
-export default PendingInvitationsList;
+const mapStoreStateToProps = ({ friends }) => ({
+  ...friends,
+});
+
+PendingInvitationsList.propTypes = {
+  // eslint-disable-next-line react/require-default-props
+  pendingFriendsInvitations: PropTypes.array.isRequired(),
+};
+export default connect(mapStoreStateToProps)(PendingInvitationsList);

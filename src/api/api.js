@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+/* eslint-disable no-return-await */
 import axios from 'axios';
 import logout from '../utils/auth';
 
@@ -7,23 +9,42 @@ const apiClient = axios.create({
 });
 
 apiClient.interceptors.request.use((config) => {
-  const userInformation = localStorage.getItem('user');
-  if (userInformation) {
-    const { token } = JSON.parse(userInformation);
+  const userInformation = JSON.parse(localStorage.getItem('user')) || null;
+
+  if (userInformation?.tokens?.access_token) {
+    const { tokens: { access_token } } = userInformation;
     // eslint-disable-next-line no-param-reassign
-    config.headers.Authorization = `Bearer ${token}`;
+    config.headers.Authorization = `Bearer ${access_token}`;
   }
+
   return config;
-}, (err) => Promise.reject(err));
+}, async (err) => {
+  Promise.reject(err);
+});
 
-// eslint-disable-next-line no-return-await
-export const login = async (data) => await apiClient.post('/user/login', data);
+export const login = async (data) => {
+  try {
+    return await apiClient.post('/user/login', data);
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+};
 
-// eslint-disable-next-line no-return-await
-export const register = async (data) => await apiClient.post('/user/register', data);
+export const register = async (data) => {
+  try {
+    return await apiClient.post('/user/register', data);
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+};
 
-// eslint-disable-next-line no-return-await
-export const sendFriendInvitation = async (data) => await apiClient.post('/friend-invitation/invite', data);
+export const sendFriendInvitation = async (data) => {
+  try {
+    return await apiClient.post('/friend-invitation/invite', data);
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+};
 
 export const checkReponseCode = (error) => {
   const responseCode = error?.response?.status;

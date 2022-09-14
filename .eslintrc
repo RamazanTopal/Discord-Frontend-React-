@@ -3,6 +3,9 @@
   "parserOptions": {
     "ecmaVersion": 2020
   },
+  "rules": {
+    "camelcase": ["error", {"allow": ["aa_bb"]}]
+  },
   "env": {
     "browser": true
   },
