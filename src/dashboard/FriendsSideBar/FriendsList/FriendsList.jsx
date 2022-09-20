@@ -1,30 +1,51 @@
 import React from 'react';
-
+import { PropTypes } from 'prop-types';
 import { styled } from '@mui/system';
+import { connect } from 'react-redux';
 import FriendsListItem from './FriendsListItem';
 
-const DUMMY_FRIENDS = [
-  { id: 1, username: 'rmaazan', isOnline: true },
-  { id: 2, username: 'omer', isOnline: true },
-  { id: 3, username: 'salih', isOnline: false },
-  { id: 4, username: 'ulu', isOnline: true }];
 const MainContainer = styled('div')({
   flexGrow: 1,
   width: '100%',
 });
-function FriendsList() {
+
+const checkOnlineUsers = (friends = [], onlineUsers = []) => {
+  friends.forEach((f) => {
+    const isUserOnline = onlineUsers.find((user) => user.userId === f.id);
+    // eslint-disable-next-line no-param-reassign
+    f.isOnline = isUserOnline || false;
+  });
+  return friends;
+};
+function FriendsList({ friends, onlineUsers }) {
   return (
     <MainContainer>
-      {DUMMY_FRIENDS.map((f) => (
-        <FriendsListItem
-          username={f.username}
-          id={f.id}
-          key={f.id}
-          isOnline={f.isOnline}
-        />
-      ))}
+      {
+        // eslint-disable-next-line array-callback-return
+        checkOnlineUsers(friends, onlineUsers).map((f) => {
+          <FriendsListItem
+            name={f.name}
+            id={f.id}
+            key={f.id}
+            isOnline={f.isOnline}
+          />;
+        })
+      }
     </MainContainer>
   );
 }
 
-export default FriendsList;
+FriendsList.defaultProps = {
+  friends: undefined,
+  onlineUsers: undefined,
+};
+FriendsList.propTypes = {
+  // eslint-disable-next-line react/require-default-props,
+
+  friends: PropTypes.arrayOf(PropTypes.shape()),
+  onlineUsers: PropTypes.arrayOf(PropTypes.shape()),
+};
+const mapStoreStateToProps = ({ friends }) => ({
+  ...friends,
+});
+export default connect(mapStoreStateToProps)(FriendsList);

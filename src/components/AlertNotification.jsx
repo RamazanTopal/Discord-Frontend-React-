@@ -16,7 +16,7 @@ function AlertNotification({
       onClose={closeAlertMessage}
       autoHideDuration={6000}
     >
-      <Alert severit="error">{alertMessageContent}</Alert>
+      <Alert severit="error">{alertMessageContent || ''}</Alert>
     </Snackbar>
   );
 }
@@ -28,10 +28,15 @@ const mapStoreStateProps = ({ alert }) => ({
 const mapActionsToProps = (dispatch) => ({
   ...getActions(dispatch),
 });
+
+AlertNotification.defaultProps = {
+  alertMessageContent: null,
+};
+
 AlertNotification.propTypes = {
-  showAlertMessage: PropTypes.string.isRequired,
+  showAlertMessage: PropTypes.bool.isRequired,
   closeAlertMessage: PropTypes.func.isRequired,
-  alertMessageContent: PropTypes.string.isRequired,
+  alertMessageContent: PropTypes.string,
 };
 
 export default connect(mapStoreStateProps, mapActionsToProps)(AlertNotification);

@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Tooltip, Typography } from '@mui/material';
 import { Box } from '@mui/system';
+import { connect } from 'react-redux';
 import Avatar from '../../../components/Avatar';
 import InvitationDecisionButtons from './InvitationDecisionButtons';
+import { getActions } from '../../../store/actions/friendsAction';
 
 function PendingInvitationsListItem({
   id,
-  username,
+  name,
   email,
   acceptFriendInvitation = () => {},
   rejectFriendInvitation = () => {},
@@ -37,7 +39,7 @@ function PendingInvitationsListItem({
             justifyContent: 'space-between',
           }}
         >
-          <Avatar username={username} />
+          <Avatar name={name} />
           <Typography
             sx={{
               marginLeft: '7px',
@@ -47,7 +49,7 @@ function PendingInvitationsListItem({
             }}
             variant="subtitle2"
           >
-            {username}
+            {name}
 
           </Typography>
           <InvitationDecisionButtons
@@ -61,12 +63,15 @@ function PendingInvitationsListItem({
   );
 }
 
+const mapActionToProps = (dispatch) => ({
+  ...getActions(dispatch),
+});
 PendingInvitationsListItem.propTypes = {
   id: PropTypes.string.isRequired,
-  username: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   acceptFriendInvitation: PropTypes.func.isRequired,
   rejectFriendInvitation: PropTypes.func.isRequired,
 };
 
-export default PendingInvitationsListItem;
+export default connect(null, mapActionToProps)(PendingInvitationsListItem);

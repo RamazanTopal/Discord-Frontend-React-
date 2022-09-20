@@ -4,7 +4,8 @@
     "ecmaVersion": 2020
   },
   "rules": {
-    "camelcase": ["error", {"allow": ["aa_bb"]}]
+    "camelcase": ["error", {"allow": ["aa_bb"]}],
+    "react/require-default-props": "off"
   },
   "env": {
     "browser": true

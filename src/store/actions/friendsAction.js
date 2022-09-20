@@ -20,9 +20,38 @@ const sendFriendInvitation = (data, closeDialogHandler) => async (dispatch) => {
 export const setPendingFriendsInvitations = (pendingFriendsInvitations) => ({
   type: friendsActions.SET_PENDING_FRIENDS_INVITATIONS,
   pendingFriendsInvitations,
-
 });
+
+export const setFriends = (friends) => ({
+  type: friendsActions.SET_FRIENDS,
+  friends,
+});
+
+export const setOnlineUsers = (onlineUsers) => ({
+  type: friendsActions.SET_FRIENDS,
+  onlineUsers,
+});
+
+const acceptFriendInvitation = (data) => async (dispatch) => {
+  try {
+    await api.acceptFriendInvitation(data);
+    dispatch(openAlertMessage('Invitation accepted!'));
+  } catch (error) {
+    dispatch(openAlertMessage(error.message));
+  }
+};
+
+const rejectFriendInvitation = (data) => async (dispatch) => {
+  try {
+    await api.rejectFriendInvitation(data);
+    dispatch(openAlertMessage('Invitation rejected!'));
+  } catch (error) {
+    dispatch(openAlertMessage(error.message));
+  }
+};
 export const getActions = (dispatch) => ({
   // eslint-disable-next-line max-len
   sendFriendInvitation: (data, closeDialogHandler) => dispatch(sendFriendInvitation(data, closeDialogHandler)),
+  acceptFriendInvitation: (data) => dispatch(acceptFriendInvitation(data)),
+  rejectFriendInvitation: (data) => dispatch(rejectFriendInvitation(data)),
 });

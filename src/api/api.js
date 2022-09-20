@@ -53,3 +53,19 @@ export const checkReponseCode = (error) => {
   }
   return false;
 };
+
+export const acceptFriendInvitation = async (data) => {
+  try {
+    return await apiClient.post('/friend-invitation/accept', data);
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+};
+
+export const rejectFriendInvitation = async (data) => {
+  try {
+    return await apiClient.post('/friend-invitation/reject', data);
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+};

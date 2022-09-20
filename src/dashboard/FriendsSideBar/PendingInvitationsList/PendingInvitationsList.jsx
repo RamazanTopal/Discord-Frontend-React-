@@ -22,7 +22,7 @@ function PendingInvitationsList({ pendingFriendsInvitations }) {
           key={invitation._id}
           // eslint-disable-next-line no-underscore-dangle
           id={invitation._id}
-          username={invitation.senderId.username}
+          name={invitation.senderId.name}
           email={invitation.senderId.email}
         />
       ))}
@@ -35,8 +35,12 @@ const mapStoreStateToProps = ({ friends }) => ({
   ...friends,
 });
 
+PendingInvitationsList.defaultProps = {
+  pendingFriendsInvitations: undefined,
+};
 PendingInvitationsList.propTypes = {
-  // eslint-disable-next-line react/require-default-props
-  pendingFriendsInvitations: PropTypes.array.isRequired(),
+  // eslint-disable-next-line react/require-default-props,
+
+  pendingFriendsInvitations: PropTypes.arrayOf(PropTypes.shape()),
 };
 export default connect(mapStoreStateToProps)(PendingInvitationsList);

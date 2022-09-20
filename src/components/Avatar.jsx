@@ -14,15 +14,17 @@ const AvatarPreview = styled('div')({
   fontWeight: '700',
   marginLeft: '5px',
 });
-function Avatar({ username, large }) {
+function Avatar({ name, large }) {
   return (
-    <AvatarPreview style={large && { height: '80px', width: '80px' }}>{username.substring(0, 2)}</AvatarPreview>
+    <AvatarPreview style={large && { height: '80px', width: '80px' }}>{name.substring(0, 2)}</AvatarPreview>
   );
 }
-
+Avatar.defaultProps = {
+  large: undefined,
+};
 Avatar.propTypes = {
-  username: PropTypes.string.isRequired,
-  large: PropTypes.bool.isRequired,
+  name: PropTypes.string.isRequired,
+  large: PropTypes.bool,
 };
 
 export default Avatar;

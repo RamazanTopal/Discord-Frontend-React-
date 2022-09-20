@@ -4,7 +4,7 @@ import { Button, Typography } from '@mui/material';
 import Avatar from '../../../components/Avatar';
 import OnlineIndicator from './OnlineIndicator';
 
-function FriendsListItem({ username, isOnline }) {
+function FriendsListItem({ name, isOnline }) {
   return (
     <Button
       style={{
@@ -19,7 +19,7 @@ function FriendsListItem({ username, isOnline }) {
         position: 'relative',
       }}
     >
-      <Avatar username={username} />
+      <Avatar name={name} />
       <Typography
         style={{
           marginLeft: '7px',
@@ -29,7 +29,7 @@ function FriendsListItem({ username, isOnline }) {
         variant="subtitle1"
         align="left"
       >
-        {username}
+        {name}
       </Typography>
       {isOnline && <OnlineIndicator />}
     </Button>
@@ -37,7 +37,7 @@ function FriendsListItem({ username, isOnline }) {
 }
 
 FriendsListItem.propTypes = {
-  username: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   isOnline: PropTypes.bool.isRequired,
 };
 
