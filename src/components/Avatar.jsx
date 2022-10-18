@@ -13,6 +13,7 @@ const AvatarPreview = styled('div')({
   fontSize: '20px',
   fontWeight: '700',
   marginLeft: '5px',
+  color: 'white',
 });
 function Avatar({ name, large }) {
   return (

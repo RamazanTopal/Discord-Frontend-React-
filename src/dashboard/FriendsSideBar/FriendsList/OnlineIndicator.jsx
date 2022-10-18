@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Box } from '@mui/material';
 import { FiberManualRecordRounded } from '@mui/icons-material';
 
@@ -14,7 +13,6 @@ function OnlineIndicator() {
     }}
     >
       <FiberManualRecordRounded />
-
     </Box>
   );
 }

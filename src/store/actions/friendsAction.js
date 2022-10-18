@@ -3,7 +3,7 @@ import * as api from '../../api/api';
 
 export const friendsActions = {
   SET_FRIENDS: 'FRIENDS.SET_FRIENDS',
-  SET_PENDING_FRIENDS_INVITATIONS: 'FRIENDS.SET_PENDING_FRIENDS_INVITATION',
+  SET_PENDING_FRIENDS_INVITATIONS: 'FRIENDS.SET_PENDING_FRIENDS_INVITATIONS',
   SET_ONLINE_USERS: 'FRIENDS.SET_ONLINE_USERS',
 };
 
@@ -28,7 +28,7 @@ export const setFriends = (friends) => ({
 });
 
 export const setOnlineUsers = (onlineUsers) => ({
-  type: friendsActions.SET_FRIENDS,
+  type: friendsActions.SET_ONLINE_USERS,
   onlineUsers,
 });
 

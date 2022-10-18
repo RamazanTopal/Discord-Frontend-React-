@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { styled } from '@mui/system';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import Messenger from './Messenger';
 import FriendsSideBar from './FriendsSideBar/FriendsSideBar';
 import SideBar from './SideBar/SideBar';
 import logout from '../utils/auth';
 import { getActions } from '../store/actions/authActions';
 import AppBar from './AppBar/AppBar';
 import { connectWithSocketServer } from '../realtimeCommunication/socketConnection';
+import Messenger from './Messenger/Messenger';
 
 const Wrapper = styled('div')({
   width: '100%',
@@ -28,8 +28,8 @@ function Dashboard({ setUserDetails }) {
   return (
     <Wrapper>
       <SideBar />
-      <Messenger />
       <FriendsSideBar />
+      <Messenger />
       <AppBar />
     </Wrapper>
   );

@@ -12,7 +12,7 @@ import { getActions } from '../../store/actions/friendsAction';
 function AddFriendDialog({
   isDialogOpen,
   closeDialogHandler,
-  sendFriendInvitation = (deger) => deger,
+  sendFriendInvitation = () => {},
 }) {
   const [email, setEmail] = useState('');
   const [isFormValid, setIsFormValid] = useState('');

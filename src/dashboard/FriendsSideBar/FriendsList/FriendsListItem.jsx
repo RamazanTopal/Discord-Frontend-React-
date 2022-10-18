@@ -1,12 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Typography } from '@mui/material';
+import { connect } from 'react-redux';
 import Avatar from '../../../components/Avatar';
 import OnlineIndicator from './OnlineIndicator';
+import { chatTypes, getActions } from '../../../store/actions/chatActions';
 
-function FriendsListItem({ name, isOnline }) {
+function FriendsListItem({
+  name, isOnline, id, setChosenChatDetails,
+}) {
+  const handleChooseActiveConversation = () => {
+    setChosenChatDetails({ id, name }, chatTypes.DIRECT);
+  };
+
   return (
     <Button
+      onClick={handleChooseActiveConversation}
       style={{
         width: '100%',
         height: '42px',
@@ -38,7 +47,13 @@ function FriendsListItem({ name, isOnline }) {
 
 FriendsListItem.propTypes = {
   name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   isOnline: PropTypes.bool.isRequired,
+  setChosenChatDetails: PropTypes.func.isRequired,
 };
 
-export default FriendsListItem;
+const mapActionsToProps = (dispatch) => ({
+  ...getActions(dispatch),
+});
+
+export default connect(null, mapActionsToProps)(FriendsListItem);

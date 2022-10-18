@@ -5,7 +5,8 @@
   },
   "rules": {
     "camelcase": ["error", {"allow": ["aa_bb"]}],
-    "react/require-default-props": "off"
+    "react/require-default-props": "off",
+    "react/prop-types": 0
   },
   "env": {
     "browser": true

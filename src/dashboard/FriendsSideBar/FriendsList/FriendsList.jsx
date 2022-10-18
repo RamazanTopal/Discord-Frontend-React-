@@ -21,24 +21,21 @@ function FriendsList({ friends, onlineUsers }) {
   return (
     <MainContainer>
       {
+
         // eslint-disable-next-line array-callback-return
-        checkOnlineUsers(friends, onlineUsers).map((f) => {
+        checkOnlineUsers(friends, onlineUsers).map((f) => (
           <FriendsListItem
             name={f.name}
             id={f.id}
             key={f.id}
             isOnline={f.isOnline}
-          />;
-        })
+          />
+        ))
       }
     </MainContainer>
   );
 }
 
-FriendsList.defaultProps = {
-  friends: undefined,
-  onlineUsers: undefined,
-};
 FriendsList.propTypes = {
   // eslint-disable-next-line react/require-default-props,
 
